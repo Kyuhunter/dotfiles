@@ -5,10 +5,25 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+export PATH="/opt/homebrew/bin:$PATH"
+
+source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /opt/homebrew/opt/chruby/share/chruby/auto.sh
+chruby ruby-3.3.5 # run chruby to see actual version
+
+#alias ls="colorls -a"
+alias l='colorls -Ah'
+alias ll='colorls -Ahog'
+alias lg='colorls -Ah --gs'
+alias lc='colorls -lA --sd'
+alias vi="nvim"
+
 # .zshrc
-fpath+=("$(brew --prefix)/share/zsh/site-functions")
+# fpath+=("$(brew --prefix)/share/zsh/site-functions")
 # autoload -U promptinit; promptinit
 # prompt pure
+# source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
+source /Users/olad/.rubies/ruby-3.3.5/lib/ruby/gems/3.3.0/gems/colorls-1.5.0/lib/tab_complete.sh
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export PATH="$PATH":"$HOME/.local/scripts/"
@@ -16,17 +31,11 @@ export PATH="$PATH":"$HOME/.local/scripts/"
 # Load Angular CLI autocompletion.
 source <(ng completion script)
 
-alias l="colorls -a"
-alias ll='colorls -Ah'
-alias lc='colorls -lA --sd'
-alias vi="nvim"
-
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
-source /opt/homebrew/opt/chruby/share/chruby/auto.sh
-chruby ruby-3.3.5 # run chruby to see actual version
-source /Users/olad/.rubies/ruby-3.3.5/lib/ruby/gems/3.3.0/gems/colorls-1.5.0/lib/tab_complete.sh
+
+source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh

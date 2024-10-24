@@ -26,9 +26,9 @@ exec:              '#9ccfd8'          # foam
 no_access:         '#eb6f92'          # love
 
 # Age
-hour_old:          '#908caa'        # subtle
-day_old:           '#6e6a86'         # muted
-no_modifier:       '#26233a'       # overlay
+hour_old:          '#e0def4'          # text
+day_old:           '#908caa'        # subtle
+no_modifier:       '#6e6a86'         # muted
 
 # File Size
 file_large:        '#eb6f92'          # love
