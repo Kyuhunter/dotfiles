@@ -6,16 +6,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 export PATH="/opt/homebrew/bin:$PATH"
+export FPATH="/opt/homebrew/bin/eza/completions/zsh:$FPATH"
 
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.3.5 # run chruby to see actual version
 
-#alias ls="colorls -a"
-alias l='colorls -Ah'
-alias ll='colorls -Ahog'
-alias lg='colorls -Ah --gs'
-alias lc='colorls -lA --sd'
+alias l='eza -a --icons'
+alias ll='eza -Gal --no-user --icons --time-style=relative'
+alias lld='ll -s modified'
+alias lg='eza -Gal --icons --git --no-filesize --no-user --no-time --no-permissions'
 alias vi="nvim"
 
 # .zshrc
