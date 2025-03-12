@@ -1,0 +1,8 @@
+theme = rose-pine
+font-family = GeistMono NFM
+
+# Quick Terminal
+keybind = global:cmd+grave_accent=toggle_quick_terminal
+quick-terminal-screen = mouse
+
+
