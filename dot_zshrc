@@ -1,41 +1,42 @@
+export PATH="/opt/homebrew/bin:$PATH"
+eval "$(zellij setup --generate-auto-start zsh)"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+autoload -Uz compinit
 
-export PATH="/opt/homebrew/bin:$PATH"
+compinit
 export FPATH="/opt/homebrew/bin/eza/completions/zsh:$FPATH"
-
 source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /opt/homebrew/opt/chruby/share/chruby/auto.sh
 chruby ruby-3.3.5 # run chruby to see actual version
-
 alias l='eza -a --icons'
 alias ll='eza -Gal --no-user --icons --time-style=relative'
-alias lld='ll -s modified'
+alias lld='ll -s oldest'
 alias lg='eza -Gal --icons --git --no-filesize --no-user --no-time --no-permissions'
 alias vi="nvim"
-
 # .zshrc
 # fpath+=("$(brew --prefix)/share/zsh/site-functions")
 # autoload -U promptinit; promptinit
 # prompt pure
 # source /opt/homebrew/opt/chruby/share/chruby/chruby.sh
 source /Users/olad/.rubies/ruby-3.3.5/lib/ruby/gems/3.3.0/gems/colorls-1.5.0/lib/tab_complete.sh
-
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export PATH="$PATH":"$HOME/.local/scripts/"
-
 # Load Angular CLI autocompletion.
-source <(ng completion script)
-
+#source <(ng completion script)
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 source ~/powerlevel10k/powerlevel10k.zsh-theme
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
-
 source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"

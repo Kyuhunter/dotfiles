@@ -1,8 +1,15 @@
-theme = rose-pine
+theme = Rose Pine
 font-family = GeistMono NFM
 
 # Quick Terminal
 keybind = global:cmd+grave_accent=toggle_quick_terminal
+keybind = global:cmd+§=toggle_quick_terminal
 quick-terminal-screen = mouse
 
-
+# Window Splits
+keybind = super+shift+w>v=new_split:right
+keybind = super+shift+w>s=new_split:down
+keybind = super+shift+w>l=goto_split:right
+keybind = super+shift+w>k=goto_split:up
+keybind = super+shift+w>h=goto_split:left
+keybind = super+shift+w>j=goto_split:down
