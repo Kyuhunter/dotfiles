@@ -1,0 +1,7 @@
+{{ if ne .chezmoi.os "darwin" }}
+# macOS-only: window manager, hotkeys, launchd, and the Mac tbot config
+.config/yabai
+.config/skhd
+Library
+.local
+{{ end }}

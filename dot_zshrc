@@ -41,8 +41,16 @@ alias wt='work-tuimer'
 zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
 [[ -r ~/powerlevel10k/powerlevel10k.zsh-theme ]] && source ~/powerlevel10k/powerlevel10k.zsh-theme
 [[ -f ~/.p10k.zsh ]] && source ~/.p10k.zsh
-[[ -r /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-[[ -r /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# zsh plugins: Homebrew (macOS) or distro packages (Linux, e.g. Fedora /usr/share)
+for _plugin in zsh-autosuggestions zsh-syntax-highlighting; do
+  for _dir in /opt/homebrew/share /usr/share; do
+    if [[ -r "$_dir/$_plugin/$_plugin.zsh" ]]; then
+      source "$_dir/$_plugin/$_plugin.zsh"
+      break
+    fi
+  done
+done
+unset _plugin _dir
 
 if [[ "$TERM_PROGRAM" == "vscode" ]] && (( $+commands[code] )); then
   vscode_shell_integration="$(code --locate-shell-integration-path zsh 2>/dev/null)"
