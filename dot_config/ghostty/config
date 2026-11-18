@@ -1,10 +1,33 @@
 theme = Rose Pine
-font-family = GeistMono NFM
+
+# Match the WezTerm font stack as closely as Ghostty allows.
+font-family = GeistMono Nerd Font Mono
+font-family-italic = Maple Mono
+font-style-italic = Italic
+font-family-bold-italic = Maple Mono
+font-style-bold-italic = Bold Italic
+font-size = 16
+
+# Use the left Option key as Alt so the WezTerm-style resize bindings work
+# without giving up the right Option key for special characters on macOS.
+macos-option-as-alt = left
 
 # Quick Terminal
 keybind = global:cmd+grave_accent=toggle_quick_terminal
 keybind = global:cmd+§=toggle_quick_terminal
 quick-terminal-screen = mouse
+
+# WezTerm-style split navigation. Ghostty can't do the same process-aware
+# Vim/Neovim passthrough as the WezTerm callback, so these only fire when the
+# split action is actually possible.
+keybind = performable:ctrl+h=goto_split:left
+keybind = performable:ctrl+j=goto_split:down
+keybind = performable:ctrl+k=goto_split:up
+keybind = performable:ctrl+l=goto_split:right
+keybind = performable:alt+h=resize_split:left,10
+keybind = performable:alt+j=resize_split:down,10
+keybind = performable:alt+k=resize_split:up,10
+keybind = performable:alt+l=resize_split:right,10
 
 # Window Splits
 keybind = super+shift+w>v=new_split:right

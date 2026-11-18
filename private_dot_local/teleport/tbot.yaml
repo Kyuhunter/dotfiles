@@ -1,0 +1,37 @@
+# tbot für Claude (Bot "claude"). Kurzlebige Zertifikate (1h), Widerruf zentral in Teleport (claude-access).
+version: v2
+proxy_server: teleport.intra.olschimke.dev:443
+onboarding:
+  join_method: bound_keypair
+  token: claude-mac
+storage:
+  type: directory
+  path: /Users/olad/.local/teleport/bot
+  # macOS kann keine "secure symlinks" (openat2) – nur Warnung, Verzeichnis ist 0700
+  symlinks: insecure
+credential_ttl: 1h
+renewal_interval: 20m
+services:
+  # HA-API ohne Token: http://127.0.0.1:18123/api/... (Teleport setzt den Bearer-Header)
+  - type: application-tunnel
+    app_name: ha-api
+    listen: tcp://127.0.0.1:18123
+  # Pangolin-Integration-API: http://127.0.0.1:18124/v1/... (Bearer-Key setzt Teleport/nginx)
+  - type: application-tunnel
+    app_name: pangolin-api
+    listen: tcp://127.0.0.1:18124
+  # mailcow-API: http://127.0.0.1:18125/api/v1/... (X-API-Key setzt Teleport/nginx)
+  - type: application-tunnel
+    app_name: mailcow-api
+    listen: tcp://127.0.0.1:18125
+  # OneDev: REST http://127.0.0.1:18126/~api/..., git clone http://127.0.0.1:18126/<projekt> (Basic-Auth setzt nginx)
+  - type: application-tunnel
+    app_name: onedev-api
+    listen: tcp://127.0.0.1:18126
+  # SSH: ssh -F ~/.local/teleport/ssh/ssh_config root@proxmox.olschimke-home
+  - type: identity
+    destination:
+      type: directory
+      path: /Users/olad/.local/teleport/ssh
+      symlinks: insecure
+    ssh_config: on
